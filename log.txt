@@ -1,0 +1,46 @@
+2025-03-18 17:14:31,495 INFO     Started test generation, writing logs to file: log.txt
+2025-03-18 17:14:36,083 INFO     No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+2025-03-18 17:14:36,694 INFO     Using NT-specific GLUT calls with exit callbacks
+2025-03-18 17:14:36,722 INFO     Starting optimization
+2025-03-18 17:14:36,723 INFO     Number of runs: 3
+2025-03-18 17:14:36,724 INFO     Generator: <class 'rilast.test_generators.lkas_dataset_generator.LKASDatasetGenerator'>
+2025-03-18 17:14:36,725 INFO     Algorithm: ga
+2025-03-18 17:14:36,725 INFO     Start time: 18/03/2025 17:14:36
+2025-03-18 17:14:36,725 INFO     ----------------------------------------------------
+2025-03-18 17:14:36,726 INFO     Saving results to: experiments
+2025-03-18 17:14:36,726 INFO     Run 0
+2025-03-18 17:14:36,736 INFO     Starting test generation, initializing parameters
+2025-03-18 17:14:36,737 INFO     Population size: 40)
+2025-03-18 17:14:39,501 INFO     Run 0 finished
+2025-03-18 17:14:39,501 INFO     ----------------------------------------------------
+2025-03-18 17:14:39,531 INFO     The highest fitness found: 0.017843
+2025-03-18 17:14:39,533 INFO     Average diversity: 0.970607
+2025-03-18 17:14:39,538 INFO     Test suite of 40 test scenarios generated
+2025-03-18 17:14:39,544 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-stats.json
+2025-03-18 17:14:39,546 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-conv.json
+2025-03-18 17:14:39,558 INFO     Test cases saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-tcs.json
+2025-03-18 17:14:39,659 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-all_tests.json
+2025-03-18 17:14:39,659 INFO     Run 1
+2025-03-18 17:14:39,666 INFO     Starting test generation, initializing parameters
+2025-03-18 17:14:39,666 INFO     Population size: 40)
+2025-03-18 17:14:42,436 INFO     Run 1 finished
+2025-03-18 17:14:42,437 INFO     ----------------------------------------------------
+2025-03-18 17:14:42,468 INFO     The highest fitness found: 0.019020
+2025-03-18 17:14:42,468 INFO     Average diversity: 1.003844
+2025-03-18 17:14:42,473 INFO     Test suite of 40 test scenarios generated
+2025-03-18 17:14:42,476 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-stats.json
+2025-03-18 17:14:42,478 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-conv.json
+2025-03-18 17:14:42,499 INFO     Test cases saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-tcs.json
+2025-03-18 17:14:42,699 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-all_tests.json
+2025-03-18 17:14:42,700 INFO     Run 2
+2025-03-18 17:14:42,707 INFO     Starting test generation, initializing parameters
+2025-03-18 17:14:42,707 INFO     Population size: 40)
+2025-03-18 17:14:45,462 INFO     Run 2 finished
+2025-03-18 17:14:45,463 INFO     ----------------------------------------------------
+2025-03-18 17:14:45,494 INFO     The highest fitness found: 0.018896
+2025-03-18 17:14:45,494 INFO     Average diversity: 0.973201
+2025-03-18 17:14:45,499 INFO     Test suite of 40 test scenarios generated
+2025-03-18 17:14:45,502 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-stats.json
+2025-03-18 17:14:45,505 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-conv.json
+2025-03-18 17:14:45,534 INFO     Test cases saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-tcs.json
+2025-03-18 17:14:45,848 INFO     Stats saved as experiments\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\18-03-2025-17-14-all_tests.json

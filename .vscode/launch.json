@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "test_vae",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "rilast\\train_utils\\test_vae.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "latent_ads",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "generate_tests.py",
+            "console": "integratedTerminal",
+            "args": ["--module", "rilast.test_generators.latent_lkas_test_generator", "--class", "LatentLKASTestGenerator"]
+        },
+        {
+            "name": "optimize_dataset",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "generate_tests.py",
+            "console": "integratedTerminal",
+            "args": ["--module", "rilast.test_generators.lkas_dataset_generator", "--class", "LKASDatasetGenerator", 
+            "--runs", "3", "--cross", "one_point", "--mut", "kappa", "--add-info", "dataset" ]
+        },
+        {
+            "name": "generate_data",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "generate_dataset.py",
+            "console": "integratedTerminal",
+            //"args": ["--module", "rilast.test_generators.lkas_test_generator", "--class", "LKASTestGenerator", "--size", "100" ]
+            //"args": ["--module", "rilast.test_generators.uav_test_generator", "--class", "UAVTestGenerator", "--size", "100" ]
+            "args": ["--module", "rilast.test_generators.lkas_test_generator", "--class", "LKASTestGenerator", "--tc-dir", "experiments\\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\\18-03-2025-17-14-tcs.json" ]
+            
+        }
+    ]
+}

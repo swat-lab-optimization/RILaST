@@ -1,0 +1,4 @@
+pop_size: 40
+nDim: 17
+termination: "n_gen"
+budget: 10

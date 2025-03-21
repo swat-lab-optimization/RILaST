@@ -1,0 +1,4 @@
+pop_size: 40
+nDim: 17
+termination: "time"
+budget: "02:05:00"
