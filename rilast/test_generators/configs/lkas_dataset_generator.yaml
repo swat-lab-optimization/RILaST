@@ -1,4 +1,4 @@
-pop_size: 40
+pop_size: 20
 nDim: 17
 termination: "n_gen"
-budget: 10
+budget: 5

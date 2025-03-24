@@ -11,7 +11,6 @@ from rilast.common.load_config import load_config
 
 
 if sys.platform.startswith("win"):
-    from rilast.common.termination import BeamNGTermination
     from beamng_sim.code_pipeline.beamng_executor import BeamngExecutor
 
 

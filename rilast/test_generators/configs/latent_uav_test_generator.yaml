@@ -4,5 +4,5 @@ nLat: 19
 termination: "n_eval"
 budget: 200
 dataset_path: datasets/dataset_optimized_uav.npy
-model_path: models/optimized_DeepVecVAE_uav
-vae_architecture: DeepVecVAE
+model_path: models/optimized_VAE3_uav
+vae_architecture: VAE3

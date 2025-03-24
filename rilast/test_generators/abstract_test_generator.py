@@ -5,17 +5,17 @@ import torch
 from pymoo.optimize import minimize
 from pymoo.termination import get_termination
 from torchvision import datasets, transforms
-from rilast.train_utils import VAE
+from rilast.common import VAE
 from rilast import ALGORITHMS, SAMPLERS, CROSSOVERS, MUTATIONS
 from rilast.common.duplicate_removal import AbstractDuplicateElimination
 from rilast.common.random_seed import get_random_seed
-from rilast.train_utils.train_vae import (
+from rilast.common import (
     ToTensor1D,
     Normalize1D_1,
     Denormalize1D_1,
 )
 
-from rilast.train_utils.test_vae import load_model
+from rilast.common import load_model
 
 log = logging.getLogger(__name__)
 
