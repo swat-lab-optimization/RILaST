@@ -76,29 +76,63 @@ budget: 50
 ```
 After each run 200 tests will be generated and saved, as a result, 200x50=10000 tests will be produced. The produced test will be saved in ```experiments``` folder by default inside a ```<experiment_id>/<..._tcs.json>``` file.
 
-Then, the dataset in ```npy``` can be produced using the following command:
+Then, the dataset in ```npy``` format can be produced using the following command:
 ```python
 python generate_dataset.py --module-name rilast.test_generators.lkas_dataset_generator --class-name LKASDatasetGenerator --tc-dir <experiments>/<experiment_id>/<..._tcs.json>
 ```
 The produced dataset will be saved in the ```datasets``` folder by default.
 ### VAE training
 Having produced the datasets, the next step is to train the VAE model. The VAE model can be trained using the ```train_vae.py``` script. Here is an example for training a VAE based on a random dataset for LKAS system testing:
+```python
+python train_vae.py --data-path datasets/dataset_random_ads.npy --epochs 1000 --ndim 17 --ldim 17
 ```
-python train_vae.py --data-path datasets/lkas_dataset.npy --epochs 1000 --ndim 17 --ldim 17
-```
-Here we indicate the path to the dataset, the number of epochs to train the VAE,  the size of the input vector specifying the test in original space, and the number of dimensions of the latent space. The trained model will be saved in the ```models``` folder by default. Other default parameters include the batch size of 512, the learning rate of 0.001, and the Adam optimizer.
+Here we indicate the path to the dataset, the number of epochs to train the VAE,  the size of the input vector specifying the test in original space  ```ndim```, and the number of dimensions of the latent space ```ldim```. The trained model will be saved in the ```models``` folder by default. Other default parameters include the batch size of 512, the learning rate of 0.001, and the Adam optimizer.
 
 For more extended experiments and hypeparameter tuning we reccommend using wandb for tracking the training process. To do so, you need to create an account on [wandb](https://wandb.ai/) and run the following command:
 ```
 wandb login
 ```
 Then, you can run the training script with the following command:
+```python
+python train_vae_wandb.py --data-path datasets/dataset_random_ads.npy --epochs 1000 -ndim 17 --runs 5 --entity <your_wandb_username> --project <your_wandb_project_name>
 ```
-python train_vae.py --dataset-path datasets/lkas_dataset.npy --experiment-id 1 --n-epochs 100 --batch-size 64 --latent-dim 2 --wandb-project-name rilast
+You can specify the parameters to fine-tune in the dedicated config inside the script. An example of such config is shown below:
+```python
+sweep_config = {
+    "method": "grid",
+    "name": project_name,
+    "metric": {
+        "goal": "minimize",
+        "name": "validation_loss"
+    },
+    "parameters": {
+        "model": {"values": ["VAE1", "VAE2", "VAE3"]},
+        "loss_func": {"values": ["lossA"]},
+        "batch_size": {"values": [64, 128, 512]},
+        "lr": {"values": [0.001, 0.0001]},
+        "nlat": {"values": [17]},
+        "ndim": {"values": [nDim]},
+        "name": {"values": [project_name]}
+    }
+}
 ```
+Here we vary the model architecture, batch size, and learning rate. The results of the training process will be tracked on the wandb dashboard.
 
 ### RILaST - optimization in the latent space
 
+To use the trained VAE model for optimization in the latent space, you need to run the test generation with the test generator for latent space. It uses ```LatentGenerator``` for test generation as shown in the example below:
+```python
+self.original_generator = KappaRoadGenerator(self.map_size, solution_size=self.nDim)
+self.generator = LatentGenerator(
+    self.nLat, 0, 1, self.original_generator, self.model, self.transform, self.transform_norm
+)
+```
+This is defined inside the ```initialize_executor```, as it was done before for the original test generator. The ```model``` is the trained VAE model, and the ```transform``` and ```transform_norm``` are the functions for normalization of the input vectors (tests). The ```model``` will be defined automatically by the [abstract test generator](rilast\test_generators\abstract_test_generator.py) if the path to the model as well as the dataset is provided in the configuration file. See an example of the configuration file for the latent test generator for [LKAS system](rilast\test_generators\configs\latent_lkas_test_generator.yaml).
+
+An example of how to run the optimization in the latent space for the LKAS system is shown below :
+```python
+python generate_tests.py --module-name rilast.test_generators.latent_lkas_test_generator --class-name LatentLKASTestGenerator --runs 10 --algorithm ga --crossover sbx --mutation pm
+```
 ## Replication Package for RIlaST experiments
 
 ### RQ1

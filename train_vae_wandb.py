@@ -4,6 +4,7 @@ import torch
 import math
 import os
 import wandb
+from datetime import datetime
 from torch import nn, optim
 from torch.nn import functional as F
 from torchvision import transforms
@@ -113,27 +114,29 @@ if __name__ == "__main__":
         "--data-path",
         type=str,
         default="datasets\\dataset_random_ads.npy",
-        help="data",
+        help="Path where the data is stored",
     )
     parser.add_argument(
         "--entity",
         type=str,
         default="dmhum",
-        help="data",
+        help="Wandb username",
         required=True
     )
+    now = datetime.now()
+    dt_string = now.strftime("%d-%m-%Y-%H-%M")
     parser.add_argument(
         "--project-name",
         type=str,
-        default="test_VAE",
-        help="data",
+        default=f"{dt_string}_VAE",
+        help="Name of the project",
     )
 
     args = parser.parse_args()
 
     use_gpu = torch.cuda.is_available()
     device = torch.device("cuda" if use_gpu else "cpu")
-
+    project_name = args.project_name
 
     nDim = args.ndim  # 29 Dimension of the input vector for VAE
 
@@ -156,19 +159,19 @@ if __name__ == "__main__":
 
     sweep_config = {
     'method': 'grid',
-    'name': args.project_name,#'29-01-2024-non-random-ads_tanh_-1_1',
+    'name': project_name,
     'metric': {
         'goal': 'minimize', 
         'name': 'validation_loss'
         },
     'parameters': {
-         'model': {'values': ["VAE1", "VAE2", "VAE3"]}, #"VecVAESimple", "VecVAE",
-        'loss_func': {'values': ["lossA"]} ,#, "lossB"
+         'model': {'values': ["VAE1", "VAE2", "VAE3"]}, 
+        'loss_func': {'values': ["lossA"]} ,
         'batch_size': {'values': [64, 128, 512]},
         'lr': {'values': [0.001, 0.0001]},
         'nlat': {'values': [17]},
         'ndim': {'values': [nDim]},
-        'name': {'values': [args.project_name]}
+        'name': {'values': [project_name]}
 
      }
     }
@@ -176,7 +179,7 @@ if __name__ == "__main__":
     start_time = time.time()
 
     for run in range(args.runs):
-        sweep_id = wandb.sweep(sweep_config,project=args.project_name, entity=args.entity)
+        sweep_id = wandb.sweep(sweep_config,project=project_name, entity=args.entity)
         #current_run = run
         np.random.shuffle(archive)
 

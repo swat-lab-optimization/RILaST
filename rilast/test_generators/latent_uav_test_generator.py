@@ -64,6 +64,4 @@ class LatentUAVTestGenerator(UAVTestGenerator):
             min_size, max_size, min_position, max_position, generator=self.generator
         )
 
-        self.executor = RRTExecutor(
-            self.generator, self.validator
-        )  # ObstacleSceneExecutor(self.latent_generator, validator) #FakeExecutor(self.latent_generator, validator) #
+        self.executor =  ObstacleSceneExecutor(self.generator, self.validator) #FakeExecutor(self.latent_generator, validator) #
