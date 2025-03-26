@@ -29,7 +29,7 @@ To set-up the BeamNG.tech simulator, please follow the instructions on the SBFT 
 For UAV simulation, follow the ```Using Host's CLI``` section of the instructions in the [Aerialist repo](https://github.com/skhatiri/Aerialist?tab=readme-ov-file#using-hosts-cli).
 
 ## Framework overview
-RILaST is a framework for test generation for autonomous robotic systems. It allows test generation in orginal as well as latent representation space. One of the main components that should be defined to use RILaST is a ```TestGenerator``` class. This class implements ```initialize_problem``` method, that in turn defines the classes that [generate the tests](rilast\generators\abstract_generator.py), [verify their validity](rilast\validators\abstract_validator.py) and [evaluate them with a simulator or a simplified fitness function ](rilast\evaluators\abstract_evaluator.py).
+RILaST is a framework for test generation for autonomous robotic systems. It allows test generation in orginal as well as latent representation space. One of the main components that should be defined to use RILaST is a ```TestGenerator``` class. This class implements ```initialize_problem``` method, that in turn defines the classes that [generate the tests](rilast/generators/abstract_generator.py), [verify their validity](rilast/validators/abstract_validator.py) and [evaluate them with a simulator or a simplified fitness function ](rilast/evaluators/abstract_evaluator.py).
 
 Here is an example of ```initialize_problem``` method implementation of a test generator for a lane keeping assist system.
 ```python
@@ -54,7 +54,7 @@ def initialize_problem(self):
     )
 ```
 Here the ```KappaRoadGenerator``` is a class that generates tests for the lane keeping assist system. The ```RoadValidator``` class is used to verify the validity of the generated tests. The ```BeamExecutor``` class is used to evaluate the tests using the [BeamNG](https://beamng.tech/) simulator. The ```LKASProblem``` class is used to define the optimization problem within the [Pymoo framework](https://pymoo.org/index.html).
-Each ```TestGenerator``` class should be accompanied by a [configuration file](rilast\test_generators\lkas_dataset_generator.py) that defines the parameters of the test generation process, such the hyperparameters of the optimization algorithm.
+Each ```TestGenerator``` class should be accompanied by a [configuration file](rilast/test_generators/lkas_dataset_generator.py) that defines the parameters of the test generation process, such the hyperparameters of the optimization algorithm.
 
 ## Usage
 
@@ -74,7 +74,7 @@ First, the dataset of tests should be generated through the search process using
 python generate_tests.py --module-name rilast.test_generators.lkas_dataset_generator --class-name LKASDatasetGenerator --runs 50 --algorithm ga --crossover one_point --mutation kappa
 ```
 Here, in ```LKASDatasetGenerator``` class the ```executor``` is initialized with ```self.executor = CurveExecutor(self.generator, test_validator=self.validator)```, which uses the ```CurveExecutor``` calculating the road topology curvature to evalaute the tests, rather then the expensive BeamNG simulator. In this way we collect a dataset based on a simplified fitness function. The search will be executed 50 times.
-In the [```config file```](rilast\test_generators\configs\lkas_dataset_generator.yaml) the parameters as population size, number of dimensions, termination criteria and budget are defined:
+In the [```config file```](rilast/test_generators/configs/lkas_dataset_generator.yaml) the parameters as population size, number of dimensions, termination criteria and budget are defined:
 ```
 pop_size: 200
 nDim: 17
@@ -134,7 +134,7 @@ self.generator = LatentGenerator(
     self.nLat, 0, 1, self.original_generator, self.model, self.transform, self.transform_norm
 )
 ```
-This is defined inside the ```initialize_executor```, as it was done before for the original test generator. The ```model``` is the trained VAE model, and the ```transform``` and ```transform_norm``` are the functions for normalization of the input vectors (tests). The ```model``` will be defined automatically by the [abstract test generator](rilast\test_generators\abstract_test_generator.py) if the path to the model as well as the dataset is provided in the configuration file. See an example of the configuration file for the latent test generator for [LKAS system](rilast\test_generators\configs\latent_lkas_test_generator.yaml).
+This is defined inside the ```initialize_executor```, as it was done before for the original test generator. The ```model``` is the trained VAE model, and the ```transform``` and ```transform_norm``` are the functions for normalization of the input vectors (tests). The ```model``` will be defined automatically by the [abstract test generator](rilast/test_generators/abstract_test_generator.py) if the path to the model as well as the dataset is provided in the configuration file. See an example of the configuration file for the latent test generator for [LKAS system](rilast/test_generators/configs/latent_lkas_test_generator.yaml).
 
 An example of how to run the optimization in the latent space for the LKAS system is shown below :
 ```python
@@ -161,7 +161,7 @@ To obtain the results for ```ga``` run:
 ```python
 python generate_tests.py --module-name rilast.test_generators.uav_test_generator --class-name UAVTestGenerator --runs 10 --algorithm ga --crossover one_point_ob --mutation obstacle
 ```
-To obtain results for ```ambiegen``` run the same command as for ```ga``` but with the [ambiegen_uav_executor](rilast\executors\ambiegen_uav_executor.py) executor.
+To obtain results for ```ambiegen``` run the same command as for ```ga``` but with the [ambiegen_uav_executor](rilast/executors/ambiegen_uav_executor.py) executor.
 To obtain results for ```rilast``` run the following command:
 ```python
 python generate_tests.py --module-name rilast.test_generators.latent_uav_test_generator --class-name LatentUAVTestGenerator --runs 10 --algorithm ga --crossover sbx --mutation pm
@@ -182,7 +182,7 @@ To obtain the results for ```ga``` run:
 ```python
 python generate_tests.py --module-name rilast.test_generators.lkas_test_generator --class-name LKASTestGenerator --runs 10 --algorithm ga --crossover one_point --mutation kappa
 ```
-To obtain results for ```ambiegen``` run the same command as for ```ga``` but with the [ambiegen_ads_executor](rilast\executors\ambiegen_ads_executor.py) executor.
+To obtain results for ```ambiegen``` run the same command as for ```ga``` but with the [ambiegen_ads_executor](rilast/executors/ambiegen_ads_executor.py) executor.
 To obtain results for ```rilast``` run the following command:
 ```python
 python generate_tests.py --module-name rilast.test_generators.latent_lkas_test_generator --class-name LatentLKASTestGenerator --runs 10 --algorithm ga --crossover sbx --mutation pm
