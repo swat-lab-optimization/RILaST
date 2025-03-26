@@ -40,8 +40,8 @@ class LatentLKASTestGenerator(LKASTestGenerator):
             self.nLat, 0, 1, self.original_generator, self.model, self.transform, self.transform_norm
         )
         self.validator = RoadValidator(self.generator, self.map_size)
-        # self.executor = BeamExecutor(
-        # self.beamng_executor, self.latent_generator, test_validator=validator)
+        self.executor = BeamExecutor(
+         self.beamng_executor, self.generator, test_validator=self.validator)
 
-        self.executor = CurveExecutor(self.generator, test_validator=self.validator)
+        #self.executor = CurveExecutor(self.generator, test_validator=self.validator)
 

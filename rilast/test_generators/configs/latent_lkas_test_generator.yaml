@@ -1,8 +1,8 @@
 pop_size: 40
 nDim: 17
 nLat: 17
-termination: "n_eval"
-budget: 200 #"02:05:00"
+termination: "time"
+budget: "02:05:00"
 dataset_path: datasets/dataset_optimized_ads.npy
 model_path: models/optimized_VAE3_ads
 vae_architecture: VAE3

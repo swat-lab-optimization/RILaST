@@ -37,7 +37,7 @@ class UAVTestGenerator(AbstractTestGenerator):
             min_size, max_size, min_position, max_position, generator=self.generator
         )
 
-        self.executor = RRTExecutor(self.generator, self.validator)
+        self.executor = ObstacleSceneExecutor(self.generator, self.validator)
 
     def initialize_problem(self):
         self.nDim = self.config["nDim"]
