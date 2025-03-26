@@ -1,0 +1,11 @@
+A,B,p-value,Effect size
+random,ga,0.025,"-0.6, L"
+random,ambiegen,0.0,"-1.0, L"
+random,tumb,0.001,"-1.0, L"
+random,rilast,0.0,"-1.0, L"
+ga,ambiegen,0.001,"-0.855, L"
+ga,tumb,0.001,"-1.0, L"
+ga,rilast,0.0,"-1.0, L"
+ambiegen,tumb,0.001,"-0.935, L"
+ambiegen,rilast,0.007,"-0.643, L"
+tumb,rilast,0.044,"0.561, L"

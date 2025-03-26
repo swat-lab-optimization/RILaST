@@ -46,6 +46,22 @@
             //"args": ["--module", "rilast.test_generators.uav_test_generator", "--class", "UAVTestGenerator", "--size", "100" ]
             "args": ["--module", "rilast.test_generators.lkas_test_generator", "--class", "LKASTestGenerator", "--tc-dir", "experiments\\18-03-2025-17-14_stats_ga_one_point_kappa_dataset\\18-03-2025-17-14-tcs.json" ]
             
-        }
+        },
+        {
+            "name": "compare",
+            "type": "python",
+            "request": "launch",
+            "program": "compare.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            //"args": ["--stats-path",  "results\\RQ1\\ads\\random", "results\\RQ1\\ads\\ga",
+            // "results\\RQ1\\ads\\ambiegen",
+            // "results\\RQ1\\ads\\crag", "results\\RQ1\\ads\\rilast", "--stats-names",  "random", "ga",
+            // "ambiegen", "crag", "rilast", "--problem", "ads", "--plot-name", "ads_rq1"]
+             "args": ["--stats-path",  "results\\RQ1\\uav\\random", "results\\RQ1\\uav\\ga",
+             "results\\RQ1\\uav\\ambiegen",
+             "results\\RQ1\\uav\\tumb", "results\\RQ1\\uav\\rilast", "--stats-names",  "random", "ga",
+             "ambiegen", "tumb", "rilast", "--problem", "uav", "--plot-name", "uav_rq1"]
+        },
     ]
 }

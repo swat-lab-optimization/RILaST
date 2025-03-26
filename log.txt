@@ -1,46 +1,11 @@
-2025-03-23 09:11:27,057 INFO     Started test generation, writing logs to file: log.txt
-2025-03-23 09:11:27,313 INFO     No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
-2025-03-23 09:11:27,832 INFO     Using NT-specific GLUT calls with exit callbacks
-2025-03-23 09:11:27,852 INFO     Starting optimization
-2025-03-23 09:11:27,853 INFO     Number of runs: 3
-2025-03-23 09:11:27,853 INFO     Generator: <class 'rilast.test_generators.lkas_dataset_generator.LKASDatasetGenerator'>
-2025-03-23 09:11:27,854 INFO     Algorithm: ga
-2025-03-23 09:11:27,855 INFO     Start time: 23/03/2025 09:11:27
-2025-03-23 09:11:27,855 INFO     ----------------------------------------------------
-2025-03-23 09:11:27,856 INFO     Saving results to: experiments
-2025-03-23 09:11:27,856 INFO     Run 0
-2025-03-23 09:11:27,869 INFO     Starting test generation, initializing parameters
-2025-03-23 09:11:27,870 INFO     Population size: 20
-2025-03-23 09:11:28,374 INFO     Run 0 finished
-2025-03-23 09:11:28,375 INFO     ----------------------------------------------------
-2025-03-23 09:11:28,379 INFO     The highest fitness found: 0.017421
-2025-03-23 09:11:28,380 INFO     Average diversity: 1.037943
-2025-03-23 09:11:28,382 INFO     Test suite of 20 test scenarios generated
-2025-03-23 09:11:28,388 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-stats.json
-2025-03-23 09:11:28,389 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-conv.json
-2025-03-23 09:11:28,393 INFO     Test cases saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-tcs.json
-2025-03-23 09:11:28,399 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-all_tests.json
-2025-03-23 09:11:28,400 INFO     Run 1
-2025-03-23 09:11:28,403 INFO     Starting test generation, initializing parameters
-2025-03-23 09:11:28,403 INFO     Population size: 20
-2025-03-23 09:11:28,889 INFO     Run 1 finished
-2025-03-23 09:11:28,889 INFO     ----------------------------------------------------
-2025-03-23 09:11:28,893 INFO     The highest fitness found: 0.019538
-2025-03-23 09:11:28,894 INFO     Average diversity: 1.016633
-2025-03-23 09:11:28,895 INFO     Test suite of 20 test scenarios generated
-2025-03-23 09:11:28,896 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-stats.json
-2025-03-23 09:11:28,897 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-conv.json
-2025-03-23 09:11:28,901 INFO     Test cases saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-tcs.json
-2025-03-23 09:11:28,911 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-all_tests.json
-2025-03-23 09:11:28,912 INFO     Run 2
-2025-03-23 09:11:28,916 INFO     Starting test generation, initializing parameters
-2025-03-23 09:11:28,916 INFO     Population size: 20
-2025-03-23 09:11:29,408 INFO     Run 2 finished
-2025-03-23 09:11:29,408 INFO     ----------------------------------------------------
-2025-03-23 09:11:29,412 INFO     The highest fitness found: 0.017553
-2025-03-23 09:11:29,413 INFO     Average diversity: 0.981507
-2025-03-23 09:11:29,414 INFO     Test suite of 20 test scenarios generated
-2025-03-23 09:11:29,415 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-stats.json
-2025-03-23 09:11:29,416 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-conv.json
-2025-03-23 09:11:29,421 INFO     Test cases saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-tcs.json
-2025-03-23 09:11:29,436 INFO     Stats saved as experiments\23-03-2025-09-11_stats_ga_one_point_kappa_\23-03-2025-09-11-all_tests.json
+2025-03-25 23:37:07,231 INFO     Started test generation, writing logs to file: log.txt
+2025-03-25 23:37:08,759 INFO     Starting optimization
+2025-03-25 23:37:08,759 INFO     Number of runs: 10
+2025-03-25 23:37:08,759 INFO     Generator: <class 'rilast.test_generators.uav_test_generator.UAVTestGenerator'>
+2025-03-25 23:37:08,760 INFO     Algorithm: random
+2025-03-25 23:37:08,760 INFO     Start time: 25/03/2025 23:37:08
+2025-03-25 23:37:08,761 INFO     ----------------------------------------------------
+2025-03-25 23:37:08,761 INFO     Saving results to: experiments
+2025-03-25 23:37:08,761 INFO     Run 0
+2025-03-25 23:37:08,764 INFO     Starting test generation, initializing parameters
+2025-03-25 23:37:08,765 INFO     Population size: 200

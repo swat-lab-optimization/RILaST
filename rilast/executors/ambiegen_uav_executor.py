@@ -5,7 +5,7 @@ from rilast.common.rrt import RRT
 #from rilast.common.rrt_star import RRTStar
 log = logging.getLogger(__name__)
 import time
-class RRTExecutor(AbstractExecutor):
+class AmbieGenUAVExecutor(AbstractExecutor):
     """
     Class for evaluating a test case with an RRT planner
     
@@ -57,7 +57,35 @@ class RRTExecutor(AbstractExecutor):
         if path is not None: 
             fitness = -len(path)
         else:
-            fitness = 0
+            fitness = -22
 
+        if fitness < -29:
+            try:
+                self.n_sim_evals += 1
+                log.info(f"Running {self.n_sim_evals} simulation")
+                test.execute()
+
+                #if len(test.test_results) > 0:
+                distances = test.get_distances()
+                distance = min(distances)
+                if distance < 1.5:
+                    bonus += 10 # addd extra fitness if the test fails
+                    num_obs = len(test.test.simulation.obstacles)
+                    bonus += 1/num_obs*10 # add extra fitness if the number of obstacles is low
+
+                    self.test_dict[self.exec_counter]["outcome"] = "FAIL"
+                else:
+                    self.test_dict[self.exec_counter]["outcome"] = "PASS"
+                log.info(f"Minimum_distance:{(distance)}")
+                self.test_dict[self.exec_counter]["metric"] = distance
+                self.test_dict[self.exec_counter]["info"] = "simulation"
+                test.plot()
+            except Exception as e:
+                self.test_dict[self.exec_counter]["info"] = "ERROR"
+                log.info("Exception during test execution")
+                log.info(f"{e}")
+
+        fitness -= bonus
+        
         return fitness
             

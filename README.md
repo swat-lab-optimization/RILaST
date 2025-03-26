@@ -21,6 +21,12 @@ conda activate RILaST
 pip install -r requirements.txt
 ```
 
+### Simulator set-up
+Even though it's possible to use RILaST without running simulation, in order to reproduce the experiments, the simulator set-up is required.
+In this work we use BeamNG.tech simulator for ADS system testing as well as the Aerialisit set-up for drone testing. 
+To set-up the BeamNG.tech simulator, please follow the instructions on the SBFT CPS tool competition [repository](https://github.com/sbft-cps-tool-competition/cps-tool-competition/blob/main/documentation/INSTALL.md)
+For UAV simulation, follow the ```Using Host's CLI``` section of the instructions in the [Aerialist repo](https://github.com/skhatiri/Aerialist?tab=readme-ov-file#using-hosts-cli).
+
 ## Framework overview
 RILaST is a framework for test generation for autonomous robotic systems. It allows test generation in orginal as well as latent representation space. One of the main components that should be defined to use RILaST is a ```TestGenerator``` class. This class implements ```initialize_problem``` method, that in turn defines the classes that [generate the tests](rilast\generators\abstract_generator.py), [verify their validity](rilast\validators\abstract_validator.py) and [evaluate them with a simulator or a simplified fitness function ](rilast\evaluators\abstract_evaluator.py).
 
@@ -135,7 +141,32 @@ python generate_tests.py --module-name rilast.test_generators.latent_lkas_test_g
 ```
 ## Replication Package for RIlaST experiments
 
-### RQ1
+### RQ1 - (Effectiveness of RILaST compared to baselines)
+
+#### UAV use case 
+
+In this RQ we compare such baseline approaches as random search, genetic algorithm, ambiegen and tumb to RILaST. To generate the plots and statistical tests from the paper, execute the following command:
+
+
+```
+python compare.py --stats-path results\RQ1\uav\random results\RQ1\uav\ga results\RQ1\uav\ambiegen results\RQ1\uav\tumb results\RQ1\ads\rilast --stats-names random ga ambiegen tumb rilast --problem uav --plot-name uav_rq1
+```
+The statistical tests and plots will be saved in the ```stats_uav_rq1``` and ```boxplots_uav_rq1``` folders respectively.
+To obtain the results for ```random``` run:
+```
+python generate_tests.py --module-name rilast.test_generators.uav_test_generator --class-name UAVTestGenerator --runs 10 --algorithm random
+```
+To obtain the results for ```ga``` run:
+```
+python generate_tests.py --module-name rilast.test_generators.uav_test_generator --class-name UAVTestGenerator --runs 10 --algorithm ga --crossover one_point_ob --mutation obstacle
+```
+To obtain results for ```ambiegen``` run the same command as for ```ga``` but with the [ambiegen_uav_executor](rilast\executors\ambiegen_uav_executor.py) executor.
+### ADS use case
+We compare such baseline approaches as random search, genetic algorithm, ambiegen and  to RILaST. To generate the plots and statistical tests from the paper, execute the following command:
+```
+python compare.py --stats-path results\RQ1\ads\random results\RQ1\ads\ga results\RQ1\ads\ambiegen results\RQ1\ads\rigaa results\RQ1\ads\crag results\RQ1\ads\rilast --stats-names random ga ambiegen rigaa crag rilast --problem ads --plot-name ads_rq1
+```
+The statistical tests and plots will be saved in the ```stats_ads_rq1``` and ```boxplots_ads_rq1``` folders respectively.
 
 ### RQ2
 

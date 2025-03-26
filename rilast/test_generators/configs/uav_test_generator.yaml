@@ -1,4 +1,4 @@
-pop_size: 200
+pop_size: 40
 nDim: 19
-termination: "n_gen"
-budget: 100 
+termination: "n_eval"
+budget: 200

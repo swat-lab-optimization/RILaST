@@ -69,19 +69,7 @@ class ObstacleGenerator(AbstractGenerator):
     def cmp_func(self, x, y):
 
         self.novelty_name = "cosine"
-        x_denorm = self.denormilize_flattened_test(x)
-        y_denorm = self.denormilize_flattened_test(y)
-        x_obst = round(x_denorm[0])
-        y_obst = round(y_denorm[0])
-        #print("X obst", x_obst)
-        #print("Y obst", y_obst)
-        x = x[:x_obst*6+1]
-        y = y[:y_obst*6+1]
-        while len(x) < self.size:
-            x = np.append(x, 0)
-        while len(y) < self.size:
-            y = np.append(y, 0)
-        
+
         cos_sim = dot(x, y) / (norm(x) * norm(y))
         difference = 1 - cos_sim
         return (difference)

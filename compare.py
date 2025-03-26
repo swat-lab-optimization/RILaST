@@ -65,19 +65,19 @@ def parse_arguments():
         epilog="For more information, please visit ",
     )
     parser.add_argument(
-        "--stats_path",
+        "--stats-path",
         nargs="+",
         help="The source folders of the metadate to analyze",
         required=True,
     )
     parser.add_argument(
-        "--stats_names",
+        "--stats-names",
         nargs="+",
         help="The names of the corresponding algorithms",
         required=True,
     )
     parser.add_argument(
-        "--plot_name", help="Name to add to the plots", required=False, default="", type=str
+        "--plot-name", help="Name to add to the plots", required=False, default="", type=str
     )
     parser.add_argument(
         "--problem", help="Type of the problem to analyze. Available options: [ads, uav]", required=False, default="ads", type=str
@@ -321,7 +321,7 @@ def calculate_test_list_novelty(
             # all_novelty.append(max(local_novelty))
             # all_novelty.append(min(local_novelty))
 
-    return np.array(all_novelty)
+    return all_novelty
 
 
 def plot_boxplot(
@@ -386,8 +386,8 @@ def analyse_ads_tests(stats_path: List[str], stats_names: List[str], plot_name: 
     plot_boxplot(sparseness_list, stats_names, "Sparseness", max_sparseness + 1, plot_name)
     plot_boxplot(oob_list, stats_names, "Number of failures", max_oob + 5, plot_name)
 
-    build_median_table(oob_list, sparseness_list, stats_names, plot_name + "_in")
-    build_cliff_data(oob_list, sparseness_list, stats_names, plot_name + "_in")
+    build_median_table(oob_list, sparseness_list, stats_names, plot_name)
+    build_cliff_data(oob_list, sparseness_list, stats_names, plot_name)
 
 def analyse_uav_tests(tests_path: List[str], stats_names: List[str], plot_name: str, problem: str = "uav") -> None:
     """
@@ -408,8 +408,8 @@ def analyse_uav_tests(tests_path: List[str], stats_names: List[str], plot_name: 
     plot_boxplot(fail_num_list_all, stats_names, "Number of failures", plot_name=plot_name)
     plot_boxplot(diversity_in_list_all, stats_names, "Sparseness", plot_name=plot_name)
 
-    build_median_table(fail_num_list_all, diversity_in_list_all, stats_names, plot_name + "_in")
-    build_cliff_data(fail_num_list_all, diversity_in_list_all, stats_names, plot_name + "_in")
+    build_median_table(fail_num_list_all, diversity_in_list_all, stats_names, plot_name)
+    build_cliff_data(fail_num_list_all, diversity_in_list_all, stats_names, plot_name)
 
 def initialize_generator(problem: str) -> AbstractGenerator:
     if problem == "ads":
@@ -434,8 +434,8 @@ def collect_stats(stats_path: List[str], stats_names: List[str]) -> Tuple[List[L
             for filename in files:
                 if "oob_stats.csv" in filename:
                     data = pd.read_csv(os.path.join(root, filename))
-                    current_sparseness_list.append(float(data["avg_sparseness"]))
-                    current_oob_list.append(int(data["total_oob"]))
+                    current_sparseness_list.append(list(data["avg_sparseness"])[0])
+                    current_oob_list.append(list(data["total_oob"])[0])
                 if "all_tests" in filename:
                     all_test_paths.append(os.path.join(root, filename))
         sparseness_list.append(current_sparseness_list)

@@ -143,7 +143,7 @@ if __name__ == "__main__":
     runs = args.runs
     alg, cross, mut, add_info = args.algorithm, args.crossover, args.mutation, args.add_info
 
-    setup_logging(debug=True, log_to="log.txt")
+    setup_logging(debug=False, log_to="log.txt")
     module = importlib.import_module(module_name)
     the_class = getattr(module, class_name)
 
