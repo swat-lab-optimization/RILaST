@@ -16,10 +16,11 @@ Clone the repository and install the dependencies. This project uses Python 3.9 
 ```
 git clone git@github.com:swat-lab-optimization/RILaST.git
 cd RILaST
-conda create -n rilast python=3.9
+conda create -n rilast python=3.10
 conda activate RILaST
 pip install -r requirements.txt
 ```
+For installing pytorch, please follow the instructions on the [official website](https://pytorch.org/get-started/locally/) to set it with your gpu/cpu configuration.
 
 ### Simulator set-up
 Even though it's possible to use RILaST without running simulation, in order to reproduce the experiments, the simulator set-up is required.
