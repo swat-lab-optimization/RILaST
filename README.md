@@ -153,14 +153,19 @@ python compare.py --stats-path results\RQ1\uav\random results\RQ1\uav\ga results
 ```
 The statistical tests and plots will be saved in the ```stats_uav_rq1``` and ```boxplots_uav_rq1``` folders respectively.
 To obtain the results for ```random``` run:
-```
+```python
 python generate_tests.py --module-name rilast.test_generators.uav_test_generator --class-name UAVTestGenerator --runs 10 --algorithm random
 ```
 To obtain the results for ```ga``` run:
-```
+```python
 python generate_tests.py --module-name rilast.test_generators.uav_test_generator --class-name UAVTestGenerator --runs 10 --algorithm ga --crossover one_point_ob --mutation obstacle
 ```
 To obtain results for ```ambiegen``` run the same command as for ```ga``` but with the [ambiegen_uav_executor](rilast\executors\ambiegen_uav_executor.py) executor.
+To obtain results for ```rilast``` run the following command:
+```python
+python generate_tests.py --module-name rilast.test_generators.latent_uav_test_generator --class-name LatentUAVTestGenerator --runs 10 --algorithm ga --crossover sbx --mutation pm
+```
+To obtain results for ```tumb``` run the following command follow the instructions in the respective [repository](https://github.com/MayDGT/UAV-Testing-Competition).
 ### ADS use case
 We compare such baseline approaches as random search, genetic algorithm, ambiegen and  to RILaST. To generate the plots and statistical tests from the paper, execute the following command:
 ```
@@ -168,7 +173,27 @@ python compare.py --stats-path results\RQ1\ads\random results\RQ1\ads\ga results
 ```
 The statistical tests and plots will be saved in the ```stats_ads_rq1``` and ```boxplots_ads_rq1``` folders respectively.
 
-### RQ2
+To obtain the results for ```random``` run:
+```python
+python generate_tests.py --module-name rilast.test_generators.lkas_test_generator --class-name LKASTestGenerator --runs 10 --algorithm random
+```
+To obtain the results for ```ga``` run:
+```python
+python generate_tests.py --module-name rilast.test_generators.lkas_test_generator --class-name LKASTestGenerator --runs 10 --algorithm ga --crossover one_point --mutation kappa
+```
+To obtain results for ```ambiegen``` run the same command as for ```ga``` but with the [ambiegen_ads_executor](rilast\executors\ambiegen_ads_executor.py) executor.
+To obtain results for ```rilast``` run the following command:
+```python
+python generate_tests.py --module-name rilast.test_generators.latent_lkas_test_generator --class-name LatentLKASTestGenerator --runs 10 --algorithm ga --crossover sbx --mutation pm
+```
+To obtain results for ```rigaa``` and ```crag``` run the following command follow the instructions in the respective repositories for [rigaa](https://github.com/MayDGT/UAV-Testing-Competition) and [crag](https://github.com/sbft-cps-tool-competition/cps-tool-competition/tree/tools24/crag-sbft2024).
+
+### RQ2 - (Effectiveness of search in latent space)
+
+#### UAV use case
+
+To generate the plots and statistical tests from the paper, execute the ```compare.py``` script with files from the [```results\RQ2\uav```](results\RQ2\uav) folder. The following command will generate the plots and statistical tests for the UAV use case:
+```
 
 ### RQ3
 
