@@ -192,11 +192,43 @@ To obtain results for ```rigaa``` and ```crag``` run the following command follo
 
 #### UAV use case
 
-To generate the plots and statistical tests from the paper, execute the ```compare.py``` script with files from the [```results\RQ2\uav```](results\RQ2\uav) folder. The following command will generate the plots and statistical tests for the UAV use case:
+To generate the plots and statistical tests from the paper, execute the ```compare.py``` script with files from the ```results\RQ2\uav``` folder, following the same procedure as for RQ1.
+
+To obtain the results for ```ga1``` run:
+```python
+python generate_tests.py --module-name rilast.test_generators.uav_test_generator --class-name UAVTestGenerator --runs 10 --algorithm ga --crossover one_point_ob --mutation obstacle
 ```
+For ```ga2``` run:
+```python
+python generate_tests.py --module-name rilast.test_generators.uav_test_generator --class-name UAVTestGenerator --runs 10 --algorithm ga --crossover sbx --mutation pm
+```
+To obstain the results for optimization in the latent space, based on the random and optimized datasets, execute ````generate_tests.py```` with the ```latent_uav_test_generator``` class with corresonding parameters, as model and dataset path set in the configuration file.
 
-### RQ3
+#### ADS use case
+To generate the plots and statistical tests from the paper, execute the ```compare.py``` script with files from the ```results\RQ2\ads``` folder, following the same procedure as for RQ1.
 
+To obtain the results for ```ga1``` run:
+```python
+python generate_tests.py --module-name rilast.test_generators.lkas_test_generator --class-name LKASTestGenerator --runs 10 --algorithm ga --crossover one_point --mutation kappa
+```
+For ```ga2``` run:
+```python
+python generate_tests.py --module-name rilast.test_generators.lkas_test_generator --class-name LKASTestGenerator --runs 10 --algorithm ga --crossover sbx --mutation pm
+```
+To obstain the results for optimization in the latent space, based on the random and optimized datasets, execute ````generate_tests.py```` with the ```latent_ads_test_generator``` class with corresonding parameters, as model and dataset path set in the configuration file.
+
+### RQ3 - (Choice of VAE hyperparameters.)
+To reproduce the results for this RQ, use the ```train_vae_wandb.py``` and pass the optimized datasets for the UAV and ADS case studies.
 ### RQ4
+To reproduce the results for this RQ use the ```train_vae_wandb.py``` script and modify the ```config``` dictionary inside the script to include the parameters for the VAE model latnet space dimensionality i.e. ```nlat```.
 
 ### RQ5
+To reproduce the results for this RQ, you can analyze the time execution data saved in the ```...stats.json``` files after running the ```generate_tests.py``` script for dataset collection.
+
+## Contributing
+Bug reports and pull requests are welcome. If you have any questions, please contact me at dmytro.humeniuk@polymtl.ca.
+
+## Authors
+### [Dmytro Humeniuk](https://dgumenyuk.github.io/) and [Foutse Khomh](http://khomh.net/)
+Polytechnique Montréal, Canada, 2025  
+Contact e-mail: dmytro.humeniuk@polymtl.ca
